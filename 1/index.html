@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>test 1</title>
+</head>
+<body>
+    <span id="num"></span>
+    <span id="detail"></span>
+</body>
+<script>
+    var rankArr = []; //所有排列数组（二维数组，内部放置hitArr）
+    var meetArr = []; //满足连续命中4球及以上要求的排列数组
+    var meetTranArr = [];  //满足连续命中4球及以上要求的排列数组(转换后的真实数据)
+    var shoot = 12;  //总投球数
+    var hit = 8;   //命中数
+    var hitArr = []; //一次排列中未命中的次别索引
+
+    //穷举所有可能，并生成排列数组
+    for(var i = 0; i < hit; i++) {
+        hitArr = [i, undefined, undefined, undefined];
+        for(var j = i + 1; j < hit + 1; j++) {
+            hitArr = [i, j, undefined, undefined];
+            for(var k = j + 1; k < hit + 2; k++) {
+                hitArr = [i, j, k, undefined];
+                for(var m = k + 1; m < hit + 3; m++) {
+                    hitArr = [i, j, k, m];
+                    rankArr.push(hitArr);
+                }
+            }
+        }
+    }
+
+    console.log(rankArr);
+
+    //连续命中4球及以上情况遍历
+    rankArr.forEach(function (item) {
+        for(var n = 0; n < item.length; n++) {
+            if(item[n + 1] - item[n] > 4) {
+                meetArr.push(item);
+                break;
+            }
+        }
+    });
+
+    console.log(meetArr);
+
+    //转换组合
+    meetArr.forEach(function (itemArr) {
+        const tempArr = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+        itemArr.forEach(function (item) {
+            tempArr[item] = 0;
+        });
+        
+        meetTranArr.push(tempArr);
+        delete tempArr;
+    });
+
+    console.log(meetTranArr);
+
+    document.getElementById("num").innerHTML = '连续命中4球及以上的情况有' + meetArr.length + '种, 总排列可能有' + rankArr.length + '。<br>';
+    document.getElementById("detail").innerHTML = '满足要求的排列如下：<br>' + meetTranArr.join('<br>');
+</script>
+</html>
