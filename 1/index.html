@@ -60,7 +60,7 @@
 
     console.log(meetTranArr);
 
-    document.getElementById("num").innerHTML = '连续命中4球及以上的情况有' + meetArr.length + '种, 总排列可能有' + rankArr.length + '。所占比例为' + (meetArr.length / rankArr.length * 100).toFixed(2) + '%<br>';
+    document.getElementById("num").innerHTML = '连续命中4球及以上的情况有' + meetArr.length + '种, 总排列有' + rankArr.length + '种可能。所占比例为' + (meetArr.length / rankArr.length * 100).toFixed(2) + '%<br>';
     document.getElementById("detail").innerHTML = '满足要求的排列如下：<br>' + meetTranArr.join('<br>');
 </script>
 </html>
