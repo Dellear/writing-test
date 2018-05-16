@@ -30,7 +30,7 @@ function drive(arr) {
         return new Promise((resolve) => {
             for (let i = 0; i < arguments.length; i++) {
                 if (typeof arguments[i] !== 'function') {
-                    console.error('传入参数有误，须传入函数！');
+                    console.error('传入参数有误，须传入函数数组！');
                     return;
                 }
 
