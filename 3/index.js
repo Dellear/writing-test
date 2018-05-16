@@ -6,7 +6,7 @@ const compose = function(...args) {
     let index = length;
     while (index--) {
         if (typeof args[index] !== 'function') {
-            throw new TypeError('须传入数组');
+            throw new TypeError('须传入函数数组');
         }
     }
     return function(...args1) {
