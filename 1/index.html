@@ -19,15 +19,12 @@
     var hitArr = []; //一次排列中未命中的次别索引
 
     //穷举所有可能，并生成排列数组
-    for(var i = 0; i < hit; i++) {
-        hitArr = [i, undefined, undefined, undefined];
-        for(var j = i + 1; j < hit + 1; j++) {
-            hitArr = [i, j, undefined, undefined];
-            for(var k = j + 1; k < hit + 2; k++) {
-                hitArr = [i, j, k, undefined];
-                for(var m = k + 1; m < hit + 3; m++) {
+    for(var i = 0; i < hit + 1; i++) {
+        for(var j = i + 1; j < hit + 2; j++) {
+            for(var k = j + 1; k < hit + 3; k++) {
+                for(var m = k + 1; m < hit + 4; m++) {
                     hitArr = [i, j, k, m];
-                    rankArr.push(hitArr);
+                    rankArr.push([i, j, k, m]);
                 }
             }
         }
